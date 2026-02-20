@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selvora - Smart Time Tracking for Modern Teams</title>
+    <meta
+      name="description"
+      content="Effortless time tracking for freelancers and small teams."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              selvora: {
+                primary: "#F5AFAF",
+                dark: "#E09090",
+                accent: "#F9DFDF",
+                highlight: "#FBEFEF",
+                bg: "#FCF8F8",
+                surface: "#FBEFEF",
+              },
+            },
+            boxShadow: {
+              soft: "0 4px 20px -2px rgba(113, 50, 202, 0.1)",
+              glow: "0 0 15px rgba(113, 50, 202, 0.3)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #f5afaf 0%, #f9dfdf 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #f5afaf 0%, #e09090 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-selvora-highlight selection:text-white"
+  >
+    <!-- Navbar -->
+    <nav
+      class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100"
+      x-data="{ mobileMenuOpen: false }"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <!-- Logo -->
+          <div
+            class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
+            onclick="window.location.href = 'index.html'"
+          >
+            <div
+              class="w-8 h-8 rounded-lg bg-gradient-to-br from-selvora-primary to-selvora-accent flex items-center justify-center text-white font-bold text-xl shadow-lg"
+            >
+              S
+            </div>
+            <span class="font-bold text-2xl tracking-tight text-slate-900"
+              >Selvora</span
+            >
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#features"
+              class="text-slate-600 hover:text-selvora-primary font-medium transition-colors"
+              >Features</a
+            >
+            <a
+              href="#how-it-works"
+              class="text-slate-600 hover:text-selvora-primary font-medium transition-colors"
+              >How it Works</a
+            >
+            <a
+              href="#pricing"
+              class="text-slate-600 hover:text-selvora-primary font-medium transition-colors"
+              >Pricing</a
+            >
+            <a
+              href="login.html"
+              class="text-slate-900 font-semibold hover:text-selvora-primary transition-colors"
+              >Log in</a
+            >
+            <a
+              href="register.html"
+              class="px-6 py-2.5 rounded-xl bg-selvora-primary text-white font-semibold shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              >Get Started</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="text-slate-600 hover:text-selvora-primary focus:outline-none"
+            >
+              <svg
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        x-show="mobileMenuOpen"
+        x-collapse
+        x-cloak
+        class="md:hidden bg-white border-b border-slate-100 shadow-xl"
+      >
+        <div class="px-4 pt-2 pb-6 space-y-2">
+          <a
+            href="#features"
+            class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-selvora-primary hover:bg-slate-50"
+            >Features</a
+          >
+          <a
+            href="#how-it-works"
+            class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-selvora-primary hover:bg-slate-50"
+            >How it Works</a
+          >
+          <a
+            href="#pricing"
+            class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:text-selvora-primary hover:bg-slate-50"
+            >Pricing</a
+          >
+          <div class="pt-4 flex flex-col gap-3">
+            <a
+              href="login.html"
+              class="w-full text-center px-4 py-2 border border-slate-200 rounded-xl text-slate-700 font-semibold hover:bg-slate-50"
+              >Log in</a
+            >
+            <a
+              href="register.html"
+              class="w-full text-center px-4 py-2 bg-selvora-primary text-white rounded-xl font-semibold shadow-md"
+              >Sign up Free</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden relative">
+      <!-- Background Elements -->
+      <div
+        class="absolute top-0 right-0 -z-10 w-full h-full overflow-hidden opacity-30 pointer-events-none"
+      >
+        <div
+          class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-selvora-accent blur-3xl mix-blend-multiply"
+        ></div>
+        <div
+          class="absolute top-48 -left-24 w-72 h-72 rounded-full bg-selvora-highlight blur-3xl mix-blend-multiply"
+        ></div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-100 text-selvora-primary text-sm font-semibold mb-8 animate-fade-in-up"
+        >
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-selvora-primary opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-selvora-primary"
+            ></span>
+          </span>
+          New: AI-Powered Reporting is here
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-4xl mx-auto leading-tight"
+        >
+          Master your time, <br />
+          <span class="gradient-text">amplify your earnings.</span>
+        </h1>
+
+        <p
+          class="mt-4 text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          Seamless time tracking for freelancers and modern teams. Stop guessing
+          where your day went and start billing with confidence.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="register.html"
+            class="px-8 py-4 rounded-xl bg-selvora-primary text-white text-lg font-bold shadow-glow hover:shadow-xl hover:bg-selvora-dark hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            Start Tracking Free
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="#how-it-works"
+            class="px-8 py-4 rounded-xl bg-white border border-slate-200 text-slate-700 text-lg font-bold hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <svg
+              class="w-5 h-5 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            Watch Demo
+          </a>
+        </div>
+
+        <!-- Hero Image / Dashboard Preview -->
+        <div class="mt-20 relative mx-auto max-w-5xl">
+          <div
+            class="rounded-2xl bg-slate-900 p-2 shadow-2xl ring-1 ring-slate-900/10"
+          >
+            <div
+              class="rounded-xl bg-slate-800 overflow-hidden relative aspect-[16/9] flex items-center justify-center border border-slate-700/50"
+            >
+              <!-- Placeholder for dashboard preview -->
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center text-slate-500"
+              >
+                <svg
+                  class="w-24 h-24 mb-4 opacity-20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+                  ></path>
+                </svg>
+                <p class="font-medium text-lg">Dashboard Preview</p>
+              </div>
+              <!-- Mock UI elements loosely resembling dashboard for look -->
+              <div
+                class="absolute top-0 left-0 w-full h-full p-6 grid grid-cols-4 gap-4 opacity-50 pointer-events-none"
+              >
+                <div class="col-span-1 bg-slate-700/30 rounded-lg h-full"></div>
+                <div class="col-span-3 grid grid-rows-4 gap-4">
+                  <div class="row-span-1 flex gap-4">
+                    <div
+                      class="w-1/3 bg-selvora-primary/20 rounded-lg h-full"
+                    ></div>
+                    <div class="w-1/3 bg-slate-700/30 rounded-lg h-full"></div>
+                    <div class="w-1/3 bg-slate-700/30 rounded-lg h-full"></div>
+                  </div>
+                  <div
+                    class="row-span-3 bg-slate-700/20 rounded-lg h-full"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Cloud -->
+    <section class="py-10 bg-white border-y border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p
+          class="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-8"
+        >
+          Trusted by innovators at
+        </p>
+        <div class="flex flex-wrap justify-center gap-12 grayscale opacity-50">
+          <span class="text-xl font-bold font-sans text-slate-800"
+            >Acme Corp</span
+          >
+          <span class="text-xl font-bold font-serif text-slate-800"
+            >GlobalBank</span
+          >
+          <span class="text-xl font-bold font-mono text-slate-800"
+            >DevStudio</span
+          >
+          <span class="text-xl font-bold italic text-slate-800">Creatives</span>
+          <span class="text-xl font-bold text-slate-800">StartUp.io</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2
+            class="text-base text-selvora-primary font-bold tracking-wide uppercase"
+          >
+            Features
+          </h2>
+          <h3
+            class="mt-2 text-3xl md:text-4xl font-bold text-slate-900 leading-tight"
+          >
+            Everything you need to run your freelance business
+          </h3>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 border border-slate-100 group"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-purple-100 text-selvora-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">
+              One-Click Timer
+            </h4>
+            <p class="text-slate-500 leading-relaxed">
+              Start and stop tracking in seconds. Our smart timer stays out of
+              your way.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 border border-slate-100 group"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">
+              Visual Reports
+            </h4>
+            <p class="text-slate-500 leading-relaxed">
+              Understand where your time goes with beautiful, easy-to-read
+              charts.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 border border-slate-100 group"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">
+              Project Management
+            </h4>
+            <p class="text-slate-500 leading-relaxed">
+              Organize tasks by client and project. Keep everything structured.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 border border-slate-100 group"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">
+              Mobile Friendly
+            </h4>
+            <p class="text-slate-500 leading-relaxed">
+              Track time from anywhere. Our mobile experience is top-notch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how-it-works" class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900">
+            How Selvora Works
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12 relative">
+          <!-- Line connector for large screens -->
+          <div
+            class="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-slate-100 -z-10"
+          ></div>
+
+          <!-- Step 1 -->
+          <div class="text-center">
+            <div
+              class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-slate-50 flex items-center justify-center shadow-sm mb-6 relative"
+            >
+              <span class="text-3xl font-bold text-selvora-primary">1</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">
+              Create a Project
+            </h3>
+            <p class="text-slate-500">
+              Set up your client and project details in seconds.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="text-center">
+            <div
+              class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-slate-50 flex items-center justify-center shadow-sm mb-6"
+            >
+              <span class="text-3xl font-bold text-selvora-primary">2</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Start Timing</h3>
+            <p class="text-slate-500">
+              Hit the play button when you start working. It's that easy.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="text-center">
+            <div
+              class="w-24 h-24 mx-auto bg-white rounded-full border-4 border-slate-50 flex items-center justify-center shadow-sm mb-6"
+            >
+              <span class="text-3xl font-bold text-selvora-primary">3</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">
+              Generate Reports
+            </h3>
+            <p class="text-slate-500">
+              Export detailed reports and get paid faster.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section
+      id="pricing"
+      class="py-24 bg-slate-900 text-white relative overflow-hidden"
+    >
+      <!-- Abstract Shapes -->
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-selvora-primary opacity-20 blur-[100px]"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-selvora-accent opacity-10 blur-[100px]"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Simple, transparent pricing
+          </h2>
+          <p class="text-slate-400 max-w-xl mx-auto">
+            Choose the plan that fits your workflow. No hidden fees.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Free Plan -->
+          <div
+            class="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-colors"
+          >
+            <h3 class="text-lg font-medium text-slate-300 mb-2">Freelancer</h3>
+            <div class="text-4xl font-bold mb-6">Free</div>
+            <ul class="space-y-4 mb-8 text-slate-400">
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Up to 3 Projects
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Basic Reporting
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                1 User
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-xl text-center font-semibold transition-colors"
+              >Get Started</a
+            >
+          </div>
+
+          <!-- Pro Plan -->
+          <div
+            class="bg-white rounded-2xl p-8 border-2 border-selvora-primary relative transform md:-translate-y-4 shadow-xl"
+          >
+            <div
+              class="absolute top-0 right-0 bg-selvora-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg"
+            >
+              POPULAR
+            </div>
+            <h3 class="text-lg font-medium text-slate-500 mb-2">
+              Professional
+            </h3>
+            <div class="text-4xl font-bold text-slate-900 mb-6">
+              $12<span class="text-base font-normal text-slate-400">/mo</span>
+            </div>
+            <ul class="space-y-4 mb-8 text-slate-600">
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Unlimited Projects
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Advanced Analytics
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Export to PDF/CSV
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Priority Support
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="block w-full py-3 px-4 bg-selvora-primary hover:bg-selvora-dark text-white rounded-xl text-center font-semibold transition-colors shadow-soft"
+              >Start Free Trial</a
+            >
+          </div>
+
+          <!-- Team Plan -->
+          <div
+            class="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-colors"
+          >
+            <h3 class="text-lg font-medium text-slate-300 mb-2">Team</h3>
+            <div class="text-4xl font-bold mb-6">
+              $29<span class="text-base font-normal text-slate-400">/mo</span>
+            </div>
+            <ul class="space-y-4 mb-8 text-slate-400">
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Everything in Pro
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Up to 5 Team Members
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Admin Controls
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-selvora-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+                Team Scheduling
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-xl text-center font-semibold transition-colors"
+              >Contact Sales</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-slate-900 mb-16">
+          Loved by freelancers worldwide
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Review 1 -->
+          <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-12 h-12 rounded-full bg-slate-300 flex items-center justify-center text-xl font-bold text-slate-600"
+              >
+                JD
+              </div>
+              <div>
+                <div class="font-bold text-slate-900">Jane Doe</div>
+                <div class="text-sm text-slate-500">UI/UX Designer</div>
+              </div>
+            </div>
+            <p class="text-slate-600">
+              "Selvora changed how I bill my clients. The interface is so clean
+              and the reports are exactly what I needed."
+            </p>
+          </div>
+          <!-- Review 2 -->
+          <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-12 h-12 rounded-full bg-slate-300 flex items-center justify-center text-xl font-bold text-slate-600"
+              >
+                MS
+              </div>
+              <div>
+                <div class="font-bold text-slate-900">Mark Smith</div>
+                <div class="text-sm text-slate-500">Freelance Developer</div>
+              </div>
+            </div>
+            <p class="text-slate-600">
+              "Finally, a time tracker that doesn't feel like a spreadsheet.
+              It's actually enjoyable to use."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-slate-50">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">
+          Frequently Asked Questions
+        </h2>
+
+        <div x-data="{ active: null }" class="space-y-4">
+          <!-- Item 1 -->
+          <div
+            class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+          >
+            <button
+              @click="active = active === 1 ? null : 1"
+              class="w-full text-left px-6 py-4 flex justify-between items-center outline-none"
+            >
+              <span class="font-semibold text-slate-800"
+                >Is Selvora free to use?</span
+              >
+              <svg
+                class="w-5 h-5 text-slate-400 transform transition-transform duration-200"
+                :class="{'rotate-180': active === 1}"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div x-cloak x-show="active === 1" x-collapse>
+              <div class="px-6 pb-4 text-slate-600">
+                Yes! Our Freelancer plan is completely free forever. It includes
+                up to 3 projects.
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div
+            class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+          >
+            <button
+              @click="active = active === 2 ? null : 2"
+              class="w-full text-left px-6 py-4 flex justify-between items-center outline-none"
+            >
+              <span class="font-semibold text-slate-800"
+                >Can I export my data?</span
+              >
+              <svg
+                class="w-5 h-5 text-slate-400 transform transition-transform duration-200"
+                :class="{'rotate-180': active === 2}"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div x-cloak x-show="active === 2" x-collapse>
+              <div class="px-6 pb-4 text-slate-600">
+                Absolutely. You can export your time logs to CSV or PDF at any
+                time.
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div
+            class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+          >
+            <button
+              @click="active = active === 3 ? null : 3"
+              class="w-full text-left px-6 py-4 flex justify-between items-center outline-none"
+            >
+              <span class="font-semibold text-slate-800"
+                >Do you have a mobile app?</span
+              >
+              <svg
+                class="w-5 h-5 text-slate-400 transform transition-transform duration-200"
+                :class="{'rotate-180': active === 3}"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div x-cloak x-show="active === 3" x-collapse>
+              <div class="px-6 pb-4 text-slate-600">
+                Our web app is fully responsive and works great on all mobile
+                devices. A native app is coming soon!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-12">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 rounded-lg bg-selvora-primary flex items-center justify-center text-white font-bold text-lg"
+          >
+            S
+          </div>
+          <span class="font-bold text-xl text-slate-900">Selvora</span>
+        </div>
+        <div class="text-sm text-slate-500">
+          &copy; 2024 Selvora Inc. All rights reserved.
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="text-slate-400 hover:text-selvora-primary"
+            ><span class="sr-only">Twitter</span
+            ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+              ></path></svg
+          ></a>
+          <a href="#" class="text-slate-400 hover:text-selvora-primary"
+            ><span class="sr-only">GitHub</span
+            ><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              ></path></svg
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

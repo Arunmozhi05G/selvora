@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Selvora</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              selvora: {
+                primary: "#F5AFAF",
+                dark: "#E09090",
+                accent: "#F9DFDF",
+                highlight: "#FBEFEF",
+                bg: "#FCF8F8",
+                surface: "#FBEFEF",
+              },
+            },
+            boxShadow: {
+              soft: "0 4px 20px -2px rgba(113, 50, 202, 0.1)",
+              glow: "0 0 15px rgba(113, 50, 202, 0.3)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-slate-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-selvora-highlight selection:text-white"
+  >
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="flex justify-center mb-6">
+          <!-- Logo -->
+          <div
+            class="cursor-pointer"
+            onclick="window.location.href = 'index.html'"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-selvora-primary to-selvora-accent flex items-center justify-center text-white font-bold text-2xl shadow-lg"
+            >
+              S
+            </div>
+          </div>
+        </div>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+          Create your account
+        </h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Start tracking time and getting paid faster.
+        </p>
+      </div>
+
+      <div
+        class="bg-white py-8 px-8 shadow-soft rounded-2xl border border-slate-100"
+      >
+        <form class="space-y-6" action="dashboard.html" method="GET">
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-700"
+              >Full Name</label
+            >
+            <div class="mt-1">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                class="block w-full px-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-selvora-primary focus:border-selvora-primary sm:text-sm transition-all duration-200"
+                placeholder="John Doe"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700"
+              >Email address</label
+            >
+            <div class="mt-1">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="block w-full px-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-selvora-primary focus:border-selvora-primary sm:text-sm transition-all duration-200"
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <!-- Company Name -->
+          <div>
+            <label
+              for="company"
+              class="block text-sm font-medium text-slate-700"
+              >Company Name</label
+            >
+            <div class="mt-1">
+              <input
+                id="company"
+                name="company"
+                type="text"
+                required
+                class="block w-full px-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-selvora-primary focus:border-selvora-primary sm:text-sm transition-all duration-200"
+                placeholder="Acme Inc."
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-slate-700"
+              >Password</label
+            >
+            <div class="mt-1">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full px-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-selvora-primary focus:border-selvora-primary sm:text-sm transition-all duration-200"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+            <label
+              for="confirm-password"
+              class="block text-sm font-medium text-slate-700"
+              >Confirm Password</label
+            >
+            <div class="mt-1">
+              <input
+                id="confirm-password"
+                name="confirm-password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="block w-full px-3 py-3 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-selvora-primary focus:border-selvora-primary sm:text-sm transition-all duration-200"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="terms"
+              name="terms"
+              type="checkbox"
+              required
+              class="h-4 w-4 text-selvora-primary focus:ring-selvora-primary border-gray-300 rounded cursor-pointer"
+            />
+            <label
+              for="terms"
+              class="ml-2 block text-sm text-slate-900 cursor-pointer"
+            >
+              I agree to the
+              <a href="#" class="text-selvora-primary hover:text-selvora-dark"
+                >Terms</a
+              >
+              and
+              <a href="#" class="text-selvora-primary hover:text-selvora-dark"
+                >Privacy Policy</a
+              >
+            </label>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-semibold text-white bg-selvora-primary hover:bg-selvora-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-selvora-main transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              Create Account
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-6">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-slate-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-slate-500"
+                >Already have an account?</span
+              >
+            </div>
+          </div>
+
+          <div class="mt-6 text-center">
+            <a
+              href="login.html"
+              class="font-medium text-selvora-primary hover:text-selvora-dark transition-colors"
+              >Log in here</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
